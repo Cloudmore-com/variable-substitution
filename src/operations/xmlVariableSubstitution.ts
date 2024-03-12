@@ -1,16 +1,19 @@
 import core =require('@actions/core');
 
 import { XmlDomUtility } from "./xmlDomUtility";
+import { EnvTreeUtility } from "./envVariableUtility";
 
 let envVarUtility = require ('./envVariableUtility');
 
 const tags = ["applicationSettings", "appSettings", "connectionStrings", "configSections"];
 
 export class XmlSubstitution {
+    private envTreeUtil: EnvTreeUtility;
 
     constructor(xmlDomUtilityInstance: XmlDomUtility) {
         this.variableMap = envVarUtility.getVariableMap();
         this.xmlDomUtility = xmlDomUtilityInstance;
+        this.envTreeUtil = new EnvTreeUtility();
     }
     
     substituteXmlVariables() {
@@ -102,6 +105,20 @@ export class XmlSubstitution {
                     isSubstitutionApplied = true;
                 }
             }
+            else {
+                let jsonChildArray = new Array(xmlDomNode.parent.name, attributeNameValue);
+
+                let resultNode = this.envTreeUtil.checkEnvTreePath(jsonChildArray, 0, jsonChildArray.length, EnvTreeUtility.getEnvVarTree());
+
+                if(resultNode != undefined) {
+                    if(resultNode.isEnd) {
+                        console.log('SubstitutingValueonKey' , attributeNameValue , resultNode.value);
+                        xmlDomNode.attr(attributeName, resultNode.value);
+                        isSubstitutionApplied = true;
+                    }
+                }
+            }
+
         }
         let children = xmlDomNode.children;
         for(var childNode of children) {

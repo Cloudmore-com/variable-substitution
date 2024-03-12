@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+node_modules/
+
 # User-specific files
 *.suo
 *.user
@@ -136,10 +138,6 @@ _TeamCity*
 *.coverage
 *.coveragexml
 
-# nyc coverage file
-.nyc_output/*
-coverage/*
-
 # NCrunch
 _NCrunch_*
 .*crunch*.local.xml
@@ -265,7 +263,6 @@ FakesAssemblies/
 
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
-node_modules/
 
 # Visual Studio 6 build log
 *.plg
