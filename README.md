@@ -1,3 +1,7 @@
+This is a fork from (https://github.com/microsoft/variable-substitution)
+
+This can apply variable substitution <strong>NOT</strong> only on the applicationSettings, appSettings, connectionStrings and configSections elements of configuration files, but any.
+
 # GitHub Action for substituting variables in parameterized files
 
 With the Variable Substitution Action for GitHub, you can apply variable substitution to XML, JSON and YAML based configuration and parameter files.
