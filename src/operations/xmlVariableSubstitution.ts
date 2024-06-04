@@ -5,7 +5,7 @@ import { EnvTreeUtility } from "./envVariableUtility";
 
 let envVarUtility = require ('./envVariableUtility');
 
-const tags = ["applicationSettings", "appSettings", "connectionStrings", "configSections"];
+const tags = ["applicationSettings", "appSettings", "connectionStrings", "configSections", "system.web"];
 
 export class XmlSubstitution {
     private envTreeUtil: EnvTreeUtility;
